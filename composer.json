@@ -1,14 +1,17 @@
 {
-    "name": "friendsofsymfony/user-bundle",
+    "name": "highlyprofessionalscum/user-bundle",
     "type": "symfony-bundle",
     "description": "Symfony FOSUserBundle",
     "keywords": [
         "User management"
     ],
-    "homepage": "http://friendsofsymfony.github.com",
+    "homepage": "https://github.com/highlyprofessionalscum/FOSUserBundle",
     "license": "MIT",
     "authors": [
         {
+            "name": "Dnitry Litvin",
+            "email": "highlyprofessionalscum@gmail.com"
+        },{
             "name": "Christophe Coevoet",
             "email": "stof@notk.org"
         },
