@@ -83,7 +83,7 @@ class UserListener implements EventSubscriber
     /**
      * Recomputes change set for Doctrine implementations not doing it automatically after the event.
      */
-    private function recomputeChangeSet(ObjectManager $om, UserInterface $user)
+    private function recomputeChangeSet(EntityManager $om, UserInterface $user)
     {
         $meta = $om->getClassMetadata(get_class($user));
 
