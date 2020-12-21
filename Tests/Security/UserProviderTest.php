@@ -50,8 +50,6 @@ class UserProviderTest extends TestCase
 
     public function testLoadUserByInvalidUsername()
     {
-        $this->expectException(UsernameNotFoundException::class);
-
         $this->userManager->expects($this->once())
             ->method('findUserByUsername')
             ->with('foobar')
