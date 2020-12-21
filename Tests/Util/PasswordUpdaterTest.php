@@ -52,31 +52,6 @@ class PasswordUpdaterTest extends TestCase
         $this->assertNull($user->getPlainPassword(), '->updatePassword() erases credentials');
     }
 
-    public function testUpdatePasswordWithNativePasswordEncoder()
-    {
-        $encoder = $this->getMockBuilder('Symfony\Component\Security\Core\Encoder\NativePasswordEncoder')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $user = new TestUser();
-        $user->setPlainPassword('password');
-        $user->setSalt('old_salt');
-
-        $this->encoderFactory->expects($this->once())
-            ->method('getEncoder')
-            ->with($user)
-            ->will($this->returnValue($encoder));
-
-        $encoder->expects($this->once())
-            ->method('encodePassword')
-            ->with('password', $this->isNull())
-            ->will($this->returnValue('encodedPassword'));
-
-        $this->updater->hashPassword($user);
-        $this->assertSame('encodedPassword', $user->getPassword(), '->updatePassword() sets encoded password');
-        $this->assertNull($user->getSalt());
-        $this->assertNull($user->getPlainPassword(), '->updatePassword() erases credentials');
-    }
-
     public function testDoesNotUpdateWithoutPlainPassword()
     {
         $user = new TestUser();
