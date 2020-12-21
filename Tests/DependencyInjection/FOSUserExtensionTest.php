@@ -21,7 +21,7 @@ class FOSUserExtensionTest extends TestCase
     /** @var ContainerBuilder */
     protected $configuration;
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         $this->configuration = null;
     }
