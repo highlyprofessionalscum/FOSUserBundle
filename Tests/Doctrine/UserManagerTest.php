@@ -14,6 +14,7 @@ namespace FOS\UserBundle\Tests\Doctrine;
 use FOS\UserBundle\Doctrine\UserManager;
 use FOS\UserBundle\Model\User;
 use PHPUnit\Framework\TestCase;
+use Doctrine\ORM\EntityManager;
 
 class UserManagerTest extends TestCase
 {
@@ -37,7 +38,7 @@ class UserManagerTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $class = $this->getMockBuilder('Doctrine\Common\Persistence\Mapping\ClassMetadata')->getMock();
-        $this->om = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->getMock();
+        $this->om = $this->getMockBuilder('Doctrine\ORM\EntityManager')->getMock();
         $this->repository = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectRepository')->getMock();
 
         $this->om->expects($this->any())

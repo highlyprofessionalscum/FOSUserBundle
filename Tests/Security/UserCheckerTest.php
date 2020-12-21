@@ -13,15 +13,18 @@ namespace FOS\UserBundle\Tests\Security;
 
 use FOS\UserBundle\Security\UserChecker;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Security\Core\Exception\LockedException;
+use Symfony\Component\Security\Core\Exception\DisabledException;
+use Symfony\Component\Security\Core\Exception\AccountExpiredException;
+use Symfony\Component\Security\Core\Exception\CredentialsExpiredException;
 
 class UserCheckerTest extends TestCase
 {
-    /**
-     * @expectedException \Symfony\Component\Security\Core\Exception\LockedException
-     * @expectedExceptionMessage User account is locked.
-     */
+
     public function testCheckPreAuthFailsLockedOut()
     {
+        $this->expectException(LockedException::class);
+
         $userMock = $this->getUser(false, false, false, false);
         $checker = new UserChecker();
         $checker->checkPreAuth($userMock);
@@ -29,21 +32,23 @@ class UserCheckerTest extends TestCase
 
     /**
      * @expectedException \Symfony\Component\Security\Core\Exception\DisabledException
-     * @expectedExceptionMessage User account is disabled.
      */
     public function testCheckPreAuthFailsIsEnabled()
     {
+        $this->expectException(DisabledException::class);
+
         $userMock = $this->getUser(true, false, false, false);
         $checker = new UserChecker();
         $checker->checkPreAuth($userMock);
     }
 
     /**
-     * @expectedException \Symfony\Component\Security\Core\Exception\AccountExpiredException
-     * @expectedExceptionMessage User account has expired.
+     *  User account has expired.
      */
     public function testCheckPreAuthFailsIsAccountNonExpired()
     {
+        $this->expectException(AccountExpiredException::class);
+
         $userMock = $this->getUser(true, true, false, false);
         $checker = new UserChecker();
         $checker->checkPreAuth($userMock);
@@ -62,11 +67,12 @@ class UserCheckerTest extends TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Security\Core\Exception\CredentialsExpiredException
-     * @expectedExceptionMessage User credentials have expired.
+     * User credentials have expired.
      */
     public function testCheckPostAuthFailsIsCredentialsNonExpired()
     {
+        $this->expectException(CredentialsExpiredException::class);
+
         $userMock = $this->getUser(true, true, true, false);
         $checker = new UserChecker();
         $checker->checkPostAuth($userMock);

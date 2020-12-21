@@ -52,9 +52,9 @@ class PasswordUpdaterTest extends TestCase
         $this->assertNull($user->getPlainPassword(), '->updatePassword() erases credentials');
     }
 
-    public function testUpdatePasswordWithBCrypt()
+    public function testUpdatePasswordWithNativePasswordEncoder()
     {
-        $encoder = $this->getMockBuilder('Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder')
+        $encoder = $this->getMockBuilder('Symfony\Component\Security\Core\Encoder\NativePasswordEncoder')
             ->disableOriginalConstructor()
             ->getMock();
         $user = new TestUser();
