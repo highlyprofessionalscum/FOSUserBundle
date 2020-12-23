@@ -123,7 +123,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch(FOSUserEvents::USER_PASSWORD_CHANGED, $event);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_PASSWORD_CHANGED);
     }
 
     /**
@@ -138,7 +138,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch(FOSUserEvents::USER_PROMOTED, $event);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_PROMOTED);
     }
 
     /**
@@ -153,7 +153,7 @@ class UserManipulator
         $this->userManager->updateUser($user);
 
         $event = new UserEvent($user, $this->getRequest());
-        $this->dispatcher->dispatch(FOSUserEvents::USER_DEMOTED, $event);
+        $this->dispatcher->dispatch($event, FOSUserEvents::USER_DEMOTED);
     }
 
     /**
