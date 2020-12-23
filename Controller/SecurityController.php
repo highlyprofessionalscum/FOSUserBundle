@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * Controller managing security.
  *
@@ -27,7 +27,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
  *
  * @final
  */
-class SecurityController extends Controller
+class SecurityController extends AbstractController
 {
     private $tokenManager;
 
