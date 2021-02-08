@@ -13,7 +13,6 @@ namespace FOS\UserBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Model\UserInterface;
@@ -67,7 +66,7 @@ class UserListener implements EventSubscriber
         $object = $args->getObject();
         if ($object instanceof UserInterface) {
             $this->updateUserFields($object);
-            $this->recomputeChangeSet($args->getObjectManager(), $object);
+            $this->recomputeChangeSet($args->getEntityManager(), $object);
         }
     }
 
